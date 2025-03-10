@@ -12,7 +12,7 @@ int main() {
     
     while (kesempatan < max_kesempatan) {
         string input_username, input_password;
-        // system("cls");
+        system("cls");
         cout << "\n======================================" << endl;
         cout << "             Login Program          " << endl;
         cout << "======================================" << endl;
@@ -22,7 +22,7 @@ int main() {
         getline(cin, input_password);
 
         if (input_username == username && input_password == password) {
-            // system("cls");
+            system("cls");
             cout << "\n======================================" << endl;
             cout << "             Login Berhasil          " << endl;
             cout << "======================================" << endl;
@@ -44,7 +44,7 @@ int main() {
     }
 
     if (kesempatan == max_kesempatan) {
-        // system("cls");
+        system("cls");
         cout << "\n======================================" << endl;
         cout << "             Login Gagal          " << endl;
         cout << "======================================" << endl;
@@ -57,7 +57,7 @@ int main() {
 
     // Menu utama
     while (true) {
-        // system("cls");
+        system("cls");
         cout << "\n======================================" << endl;
         cout << "             Menu Utama             " << endl;
         cout << "======================================" << endl;
@@ -84,7 +84,7 @@ int main() {
             case 1:
                 // Konversi mata uang
                 while (true) {
-                    // system("cls");
+                    system("cls");
                     cout << "\n======================================" << endl;
                     cout << "         Konversi Mata Uang         " << endl;
                     cout << "======================================" << endl;
@@ -169,7 +169,7 @@ int main() {
             case 2:
                 // Konversi jarak
                 while (true) {
-                    // system("cls");
+                    system("cls");
                     cout << "\n======================================" << endl;
                     cout << "           Konversi Jarak           " << endl;
                     cout << "======================================" << endl;
@@ -252,7 +252,7 @@ int main() {
             case 3:
                 // Konversi waktu
                 while (true) {
-                    // system("cls");
+                    system("cls");
                     cout << "\n======================================" << endl;
                     cout << "          Konversi Waktu           " << endl;
                     cout << "======================================" << endl;
@@ -335,7 +335,7 @@ int main() {
             case 4:
                 // Konversi suhu
                 while (true) {
-                    // system("cls");
+                    system("cls");
                     cout << "\n======================================" << endl;
                     cout << "          Konversi Suhu           " << endl;
                     cout << "======================================" << endl;
@@ -416,7 +416,7 @@ int main() {
                 }
                 break;
             case 5:
-                // system("cls");
+                system("cls");
                 cout << "\n======================================" << endl;
                 cout << "             Logout Berhasil          " << endl;
                 cout << "======================================" << endl;
