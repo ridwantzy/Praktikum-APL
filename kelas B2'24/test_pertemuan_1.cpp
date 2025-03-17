@@ -21,9 +21,9 @@ int main() {
         i++;
     }
 
-    int main() {
-        for (int i = 1; i <= 5; i++) {
-            cout << "Perulangan ke-" << i << endl;
-        }
-    return 0;}
+    // int main() {
+    //     for (int i = 1; i <= 5; i++) {
+    //         cout << "Perulangan ke-" << i << endl;
+    //     }
+    return 0;
 }
