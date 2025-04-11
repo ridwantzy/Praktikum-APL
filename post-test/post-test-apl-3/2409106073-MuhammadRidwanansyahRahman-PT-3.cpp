@@ -71,7 +71,6 @@ int main() {
             cout << "Klik Enter untuk coba lagi...";
             cin.clear();
             cin.ignore(10000, '\n');
-            cin.get();
             continue;
         }
 
