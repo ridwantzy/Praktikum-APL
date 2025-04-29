@@ -105,54 +105,25 @@ void tambahBarang() {
         getline(cin, barang[jumlahBarang].nama);
 
         int stok, harga;
-        bool valid = false;
 
-        while (!valid)  {
-            cout << "Masukkan Stok Barang: ";
-            if (cin >> stok) {
-                if (stok > 0) {
-                    valid = true;
-                    barang[jumlahBarang].detail.stok = stok;
-                } else{
-                    cout << "Stok tidak boleh 0 atau kurang!\n";
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                }
-            }else {
-                cout << "Input harus berupa ANGKA!!!\n";
-                cin.clear();
-                cin.ignore(10000, '\n');
-            }
-        }
+        cout << "Masukkan Stok Barang: ";
+        cin >> stok;
+        barang[jumlahBarang].detail.stok = stok;
 
-        valid = false;
-        while (!valid){
-            cout << "Masukkan Harga Barang: ";
-            if (cin >> harga) {
-                if (harga > 0) {
-                    valid = true;
-                    barang[jumlahBarang].detail.harga = harga;
-                } else {
-                    cout << "Harga tidak boleh 0 atau kurang!\n";
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    }
-            } else {
-                cout << "Input harus berupa ANGKA!!!\n";
-                cin.clear();
-                cin.ignore(10000, '\n');
-            }
-        }
+        cout << "Masukkan Harga Barang: ";
+        cin >> harga;
+        barang[jumlahBarang].detail.harga = harga;
+
         jumlahBarang++;
         system("cls");
         cout << "\n==============================================" << endl;
         cout << "           BARANG BERHASIL DITAMBAHKAN          " << endl;
         cout << "==============================================" << endl;
-        cout << "Barang dengan nama " << barang[jumlahBarang-1].nama << endl;
-        cout << "Jumlah barang: " << barang[jumlahBarang-1].detail.stok << endl;
-        cout << "Harga barang: " << barang[jumlahBarang-1].detail.harga << endl;
+        cout << "Barang dengan nama " << barang[jumlahBarang - 1].nama << endl;
+        cout << "Jumlah barang: " << barang[jumlahBarang - 1].detail.stok << endl;
+        cout << "Harga barang: " << barang[jumlahBarang - 1].detail.harga << endl;
         cout << "==============================================" << endl;
-        cout << "Klik Enter untuk kembali ke menu utama..." ;
+        cout << "Klik Enter untuk kembali ke menu utama...";
         cin.ignore();
         cin.get();
     } else {
@@ -160,7 +131,7 @@ void tambahBarang() {
         cout << "Klik Enter untuk kembali ke menu...";
         cin.ignore();
         cin.get();
-     }
+    }
 }
 
 void lihatBarang() {
@@ -173,7 +144,7 @@ void lihatBarang() {
             tempBarang[i] = barang[i];
         }
         
-        cout << "\n========================== PENGURUTAN =======1===================\n";
+        cout << "\n========================== PENGURUTAN ==========================\n";
         cout << "Pilih metode pengurutan :\n";
         cout << "---------------------------------------------------------------\n";
         cout << "  1. Urutkan berdasarkan Nama (A-Z)\n";
@@ -231,34 +202,23 @@ void lihatBarang() {
 void updateBarang() {
     if (jumlahBarang > 0) {
         int index;
-        bool valid = false;
-        while (!valid) {
-            system("cls");
-            cout << "\n==============================================" << endl;
-            cout << "             DAFTAR BARANG SEMBAKO          " << endl;
-            cout << "==============================================" << endl;
-            cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
-            tampilkanBarang();
-            cout << "==============================================" << endl;
 
-            cout << "Masukkan nomor barang yang ingin diupdate: ";
-            if (cin >> index) {
-                if (index > 0 && index <= jumlahBarang) {
-                    valid = true;
-                } else {
-                    cout << "Nomor barang tidak valid. Silakan pilih nomor yang tersedia.\n";
-                    cout << "Klik Enter...";
-                    cin.ignore();
-                    cin.get();
-                    return;
-                }
-            } else {
-                cout << "Input harus berupa angka. Silakan pilih nomor yang tersedia.\n";
-                cout << "Klik Enter untuk coba lagi...";
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cin.get();
-            }
+        system("cls");
+        cout << "\n==============================================" << endl;
+        cout << "             DAFTAR BARANG SEMBAKO          " << endl;
+        cout << "==============================================" << endl;
+        cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
+        tampilkanBarang();
+        cout << "==============================================" << endl;
+
+        cout << "Masukkan nomor barang yang ingin diupdate: ";
+        cin >> index;
+        if (index < 1 || index > jumlahBarang) {
+            cout << "Nomor barang tidak valid. Kembali ke menu CRUD...\n";
+            cout << "Klik Enter...";
+            cin.ignore();
+            cin.get();
+            return;
         }
 
         cout << "Masukkan Nama Barang Baru: ";
@@ -266,44 +226,15 @@ void updateBarang() {
         getline(cin, barang[index - 1].nama);
 
         int stokBaru;
-        valid = false;
-        while (!valid) {
-            cout << "Masukkan Stok Barang Baru: ";
-            if (cin >> stokBaru) {
-                if (stokBaru > 0) {
-                    valid = true;
-                    updateStokBarang(&barang[index - 1], stokBaru);
-                } else {
-                    cout << "Stok barang tidak boleh 0 atau kurang!!\n";
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                }
-            } else {
-                cout << "Input harus berupa angka!!\n";
-                cin.clear();
-                cin.ignore(10000, '\n');
-            }
-        }
+        cout << "Masukkan Stok Barang Baru: ";
+        cin >> stokBaru;
+        updateStokBarang(&barang[index - 1], stokBaru);
 
         int hargaBaru;
-        valid = false;
-        while (!valid) {
-            cout << "Masukkan Harga Barang Baru: ";
-            if (cin >> hargaBaru) {
-                if (hargaBaru > 0) {
-                    valid = true;
-                    updateHargaBarang(&barang[index - 1], hargaBaru);
-                } else {
-                    cout << "Harga barang tidak boleh 0 atau kurang!!\n";
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                }
-            } else {
-                cout << "Input harus berupa angka!!\n";
-                cin.clear();
-                cin.ignore(10000, '\n');
-            }
-        }
+        cout << "Masukkan Harga Barang Baru: ";
+        cin >> hargaBaru;
+        updateHargaBarang(&barang[index - 1], hargaBaru);
+
         system("cls");
         cout << "\n==============================================" << endl;
         cout << "             BARANG BERHASIL DIUPDATE          " << endl;
@@ -322,34 +253,23 @@ void updateBarang() {
 void hapusBarang() {
     if (jumlahBarang > 0) {
         int index;
-        bool valid = false;
-        while (!valid) {
-            system("cls");
-            cout << "\n==============================================" << endl;
-            cout << "             DAFTAR BARANG SEMBAKO          " << endl;
-            cout << "==============================================" << endl;
-            cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
-            tampilkanBarang();
-            cout << "==============================================" << endl;
 
-            cout << "Masukkan nomor barang yang ingin dihapus: ";
-            if (cin >> index) {
-                if (index > 0 && index <= jumlahBarang) {
-                    valid = true;
-                } else {
-                    cout << "Nomor barang tidak valid. Silakan pilih nomor yang tersedia.\n";
-                    cout << "Klik Enter...";
-                    cin.ignore();
-                    cin.get();
-                    return;
-                }
-            } else {
-                cout << "Input harus berupa angka. Silakan pilih nomor yang tersedia.\n";
-                cout << "Klik Enter untuk coba lagi...";
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cin.get();
-            }
+        system("cls");
+        cout << "\n==============================================" << endl;
+        cout << "             DAFTAR BARANG SEMBAKO          " << endl;
+        cout << "==============================================" << endl;
+        cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
+        tampilkanBarang();
+        cout << "==============================================" << endl;
+
+        cout << "Masukkan nomor barang yang ingin dihapus: ";
+        cin >> index;
+        if (index < 1 || index > jumlahBarang) {
+            cout << "Nomor barang tidak valid. Kembali ke menu CRUD...\n";
+            cout << "Klik Enter...";
+            cin.ignore();
+            cin.get();
+            return;
         }
 
         Barang *hapusBarang = &barang[index - 1];
@@ -357,6 +277,7 @@ void hapusBarang() {
             barang[i] = barang[i + 1];
         }
         jumlahBarang--;
+
         system("cls");
         cout << "\n==============================================" << endl;
         cout << "            BARANG BERHASIL DIHAPUS          " << endl;
@@ -379,72 +300,42 @@ void hapusBarang() {
 void beliBarang() {
     if (jumlahBarang > 0) {
         int index, jumlahBeli;
-        bool valid = false;
-        while (!valid) {
-            system("cls");
-            cout << "\n==============================================" << endl;
-            cout << "             DAFTAR BARANG SEMBAKO          " << endl;
-            cout << "==============================================" << endl;
-            cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
-            tampilkanBarang();
-            cout << "==============================================" << endl;
 
-            cout << "Masukkan nomor barang yang ingin dibeli: ";
-            if (cin >> index) {
-                if (index > 0 && index <= jumlahBarang) {
-                    cout << "Masukkan jumlah yang ingin dibeli: ";
-                    if (cin >> jumlahBeli) {
-                        if (jumlahBeli > 0 && jumlahBeli <= barang[index - 1].detail.stok) {
-                            valid = true;
-                            Barang *barangBeli = &barang[index - 1];
-                            barangBeli->detail.stok -= jumlahBeli;
-                            int totalHarga = hitungTotalHarga(&barangBeli->detail.harga, &jumlahBeli);
+        system("cls");
+        cout << "\n==============================================" << endl;
+        cout << "             DAFTAR BARANG SEMBAKO          " << endl;
+        cout << "==============================================" << endl;
+        cout << setw(5) << "No" << setw(20) << "Nama Barang" << setw(10) << "Stok" << setw(10) << "Harga" << "\n";
+        tampilkanBarang();
+        cout << "==============================================" << endl;
 
-                            system("cls");
-                            cout << "\n==============================================" << endl;
-                            cout << "             PEMBELIAN BERHASIL          " << endl;
-                            cout << "==============================================" << endl;
-                            cout << "Total harga: Rp " << totalHarga << ",-" << endl;
-                            cout << "Silahkan lakukan pembayaran..." << endl;
-                            cout << "==============================================" << endl;
-                            cout << "Klik Enter untuk kembali ke menu...";
-                            cin.ignore();
-                            cin.get();
-                        } else {
-                            if (jumlahBeli > barang[index - 1].detail.stok) {
-                                cout << "Maaf, jumlah stok tidak mencukupi.\n";
-                                cout << "Klik Enter...";
-                                cin.ignore();
-                                cin.get();
-                            } else {
-                                cout << "Jumlah yang dibeli tidak boleh 0 atau negatif!!.\n";
-                                cout << "Klik Enter...";
-                                cin.ignore();
-                                cin.get();
-                            }
-                        }
-                    } else {
-                        cout << "Input harus berupa angka.\n";
-                        cout << "Klik Enter...";
-                        cin.clear();
-                        cin.ignore(10000, '\n');
-                        cin.get();
-                    }
-                } else {
-                    cout << "Nomor barang tidak valid. Silakan pilih nomor yang tersedia.\n";
-                    cout << "Klik Enter...";
-                    cin.ignore();
-                    cin.get();
-                    return;
-                }
-            } else {
-                cout << "Input harus berupa angka. Silakan pilih nomor yang tersedia.\n";
-                cout << "Klik Enter untuk coba lagi...";
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cin.get();
-            }
+        cout << "Masukkan nomor barang yang ingin dibeli: ";
+        cin >> index;
+        if (index < 1 || index > jumlahBarang) {
+            cout << "Nomor barang tidak valid. Kembali ke menu Pembeli...\n";
+            cout << "Klik Enter...";
+            cin.ignore();
+            cin.get();
+            return;
         }
+
+        cout << "Masukkan jumlah yang ingin dibeli: ";
+        cin >> jumlahBeli;
+
+        Barang *barangBeli = &barang[index - 1];
+        barangBeli->detail.stok -= jumlahBeli;
+        int totalHarga = hitungTotalHarga(&barangBeli->detail.harga, &jumlahBeli);
+
+        system("cls");
+        cout << "\n==============================================" << endl;
+        cout << "             PEMBELIAN BERHASIL          " << endl;
+        cout << "==============================================" << endl;
+        cout << "Total harga: Rp " << totalHarga << ",-" << endl;
+        cout << "Silahkan lakukan pembayaran..." << endl;
+        cout << "==============================================" << endl;
+        cout << "Klik Enter untuk kembali ke menu...";
+        cin.ignore();
+        cin.get();
     } else {
         cout << "Tidak ada barang yang tersedia.\n";
         cout << "Klik Enter untuk kembali ke menu...";
@@ -469,15 +360,6 @@ void menuPenjual() {
         cout << "Pilih menu: ";
         int crudPilihan;
         cin >> crudPilihan;
-
-        if (cin.fail()) {
-            cout << "Input tidak valid! Silakan Masukkan ANGKA!!!." << endl;
-            cout << "Klik Enter untuk coba lagi...";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin.get();
-            continue;
-        }
 
         switch (crudPilihan) {
             case 1:
@@ -520,15 +402,6 @@ void menuPembeli() {
         cout << "Pilih menu: ";
         int pembeliPilihan;
         cin >> pembeliPilihan;
-
-        if (cin.fail()) {
-            cout << "Input tidak valid! Silakan Masukkan ANGKA!!!." << endl;
-            cout << "Klik Enter untuk coba lagi...";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin.get();
-            continue;
-        }
 
         switch (pembeliPilihan) {
             case 1:
@@ -658,15 +531,6 @@ void tampilkanMenuUtama() {
         cout << "Pilih menu: ";
         int pilihan;
         cin >> pilihan;
-
-        if (cin.fail()) {
-            cout << "Input tidak valid! Silakan Masukkan ANGKA!!!." << endl;
-            cout << "Klik Enter untuk coba lagi...";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin.get();
-            continue;
-        }
 
         switch (pilihan) {
             case 1:
